@@ -19,6 +19,43 @@ namespace api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("api.Model.EntityModel.Installment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal?>("AnticipatedValue")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("GrossValue")
+                        .HasColumnType("decimal(8,2)");
+
+                    b.Property<int>("InstallmentIdentifier")
+                        .HasColumnType("int");
+
+                    b.Property<int>("InstallmentNumber")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("NetValue")
+                        .HasColumnType("decimal(8,2)");
+
+                    b.Property<string>("ReceiptDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("TransactionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("TransferDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TransactionId");
+
+                    b.ToTable("Installment");
+                });
+
             modelBuilder.Entity("api.Model.EntityModel.Transaction", b =>
                 {
                     b.Property<Guid>("Id")
@@ -64,6 +101,15 @@ namespace api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Transaction");
+                });
+
+            modelBuilder.Entity("api.Model.EntityModel.Installment", b =>
+                {
+                    b.HasOne("api.Model.EntityModel.Transaction", "Transaction")
+                        .WithMany("Installments")
+                        .HasForeignKey("TransactionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

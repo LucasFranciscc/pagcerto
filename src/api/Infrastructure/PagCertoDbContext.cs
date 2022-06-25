@@ -10,12 +10,14 @@ namespace api.Infrastructure
             : base(options) { }
 
         public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<Installment> Installments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(PagCertoDbContext).Assembly);
 
             modelBuilder.Entity<Transaction>().Map();
+            modelBuilder.Entity<Installment>().Map();
         }
     }
 }

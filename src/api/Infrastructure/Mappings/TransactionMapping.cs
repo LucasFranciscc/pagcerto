@@ -13,6 +13,7 @@ namespace api.Infrastructure.Mappings
             entity.HasKey(t => t.Id);
 
             entity.Property(t => t.Id).ValueGeneratedOnAdd();
+            entity.HasMany(t => t.Installments).WithOne(i => i.Transaction).HasForeignKey(i => i.TransactionId);
             entity.Property(t => t.Nsu).IsRequired();
             entity.Property(t => t.TransactionDatePerformed).IsRequired();
             entity.Property(t => t.AcquirerConfirmation).IsRequired();

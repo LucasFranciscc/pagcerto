@@ -7,9 +7,13 @@ namespace api.Model.EntityModel
     {
         protected Installment() { }
 
-        public Installment(int installments)
+        public Installment(int installments, decimal grossValue, decimal netValue, string receiptDate)
         {
             InstallmentIdentifier = Math.Abs(Id.GetHashCode());
+            InstallmentNumber = installments;
+            GrossValue = grossValue;
+            NetValue = netValue;
+            ReceiptDate = receiptDate;
         }
 
         public int InstallmentIdentifier { get; set; }
@@ -19,8 +23,8 @@ namespace api.Model.EntityModel
         public decimal NetValue { get; set; }
         public int InstallmentNumber { get; set; }
         public decimal? AnticipatedValue { get; set; }
-        public DateTime ReceiptDate { get; set; }
-        public DateTime TransferDate { get; set; }
+        public string ReceiptDate { get; set; }
+        public DateTime? TransferDate { get; set; }
 
     }
 }

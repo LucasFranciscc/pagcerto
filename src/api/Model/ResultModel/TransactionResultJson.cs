@@ -1,6 +1,8 @@
 ﻿using api.Model.EntityModel;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace api.Model.ResultModel
@@ -22,7 +24,7 @@ namespace api.Model.ResultModel
             FlatRate = transaction.FlatRate;
             NumberOfInstallments = transaction.NumberOfInstallments;
             CardFinal = transaction.CardFinal;
-
+            Instalmments = transaction.Installments.Select(Installment => new InstallmentResultJson(Installment)).ToList();
         }
 
         public int Nsu { get; set; }
@@ -36,6 +38,7 @@ namespace api.Model.ResultModel
         public decimal FlatRate { get; set; }
         public int NumberOfInstallments { get; set; }
         public string CardFinal { get; set; }
+        public List<InstallmentResultJson> Instalmments { get; set; }
 
         public Task ExecuteResultAsync(ActionContext context)
         {
