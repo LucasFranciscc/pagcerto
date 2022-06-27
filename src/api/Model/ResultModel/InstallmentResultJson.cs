@@ -12,7 +12,7 @@ namespace api.Model.ResultModel
         public InstallmentResultJson(Installment installment)
         {
             InstallmentIdentifier = installment.InstallmentIdentifier;
-            TransactionId = installment.TransactionId;
+            TransactionInstallmentsId = installment.TransactionInstallmentsId;
             GrossValue = installment.GrossValue;
             NetValue = installment.NetValue;
             InstallmentNumber = installment.InstallmentNumber;
@@ -22,7 +22,7 @@ namespace api.Model.ResultModel
         }
 
         public int InstallmentIdentifier { get; set; }
-        public Guid TransactionId { get; set; }
+        public Guid TransactionInstallmentsId { get; set; }
         public decimal GrossValue { get; set; }
         public decimal NetValue { get; set; }
         public int InstallmentNumber { get; set; }
