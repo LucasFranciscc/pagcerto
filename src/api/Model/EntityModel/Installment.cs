@@ -17,7 +17,7 @@ namespace api.Model.EntityModel
         }
 
         public int InstallmentIdentifier { get; set; }
-        public Guid TransactionId { get; set; }
+        public Guid TransactionInstallmentsId { get; set; }
         public Transaction Transaction { get; set; }
         public decimal GrossValue { get; set; }
         public decimal NetValue { get; set; }
@@ -25,6 +25,13 @@ namespace api.Model.EntityModel
         public decimal? AnticipatedValue { get; set; }
         public string ReceiptDate { get; set; }
         public DateTime? TransferDate { get; set; }
+
+        public void ApplyAnticipation()
+        {
+            AnticipatedValue = NetValue - (3.8M * (NetValue / 100));
+        }
+
+        public void Transfer() => TransferDate = DateTime.Now;
 
     }
 }

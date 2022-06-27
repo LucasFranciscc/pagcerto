@@ -29,7 +29,6 @@ namespace api.Model.EntityModel
         public int NumberOfInstallments { get; set; }
         public string CardFinal { get; set; }
         public ICollection<Installment> Installments { get; set; }
-        //public int InstallmentsCount => Installments.Count;
 
         public void Approve()
         {
@@ -70,5 +69,15 @@ namespace api.Model.EntityModel
             }
 
         }
+
+        public bool RequestedAdvance() => Anticipated.HasValue;
+
+        public void ApproveAnticipation()
+        {
+            Anticipated = true;
+            foreach (Installment i in Installments) { i.ApplyAnticipation(); }
+        }
+
+        public void ReproveAnticipation() => Anticipated = false;
     }
 }

@@ -10,6 +10,7 @@ namespace api.Extensions
 
             //Services
             services.AddScoped<PaymentProcessing>();
+            services.AddScoped<AnticipationProcess>();
         }
     }
 }

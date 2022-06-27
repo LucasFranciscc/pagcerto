@@ -19,6 +19,38 @@ namespace api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("api.Model.EntityModel.Anticipation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("AnalysisEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("AnalysisResult")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("AnalysisStartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal?>("AnticipatedValue")
+                        .HasColumnType("decimal(8,2)");
+
+                    b.Property<decimal>("RequestAmountOfAnticipation")
+                        .HasColumnType("decimal(8,2)");
+
+                    b.Property<DateTime>("RequestDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UniqueIdentifier")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Anticipation");
+                });
+
             modelBuilder.Entity("api.Model.EntityModel.Installment", b =>
                 {
                     b.Property<Guid>("Id")
@@ -43,7 +75,7 @@ namespace api.Migrations
                     b.Property<string>("ReceiptDate")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("TransactionId")
+                    b.Property<Guid>("TransactionInstallmentsId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("TransferDate")
@@ -51,7 +83,7 @@ namespace api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TransactionId");
+                    b.HasIndex("TransactionInstallmentsId");
 
                     b.ToTable("Installment");
                 });
@@ -68,6 +100,9 @@ namespace api.Migrations
 
                     b.Property<bool?>("Anticipated")
                         .HasColumnType("bit");
+
+                    b.Property<Guid?>("AnticipationId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("ApprovalDate")
                         .HasColumnType("datetime2");
@@ -100,6 +135,8 @@ namespace api.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AnticipationId");
+
                     b.ToTable("Transaction");
                 });
 
@@ -107,9 +144,16 @@ namespace api.Migrations
                 {
                     b.HasOne("api.Model.EntityModel.Transaction", "Transaction")
                         .WithMany("Installments")
-                        .HasForeignKey("TransactionId")
+                        .HasForeignKey("TransactionInstallmentsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("api.Model.EntityModel.Transaction", b =>
+                {
+                    b.HasOne("api.Model.EntityModel.Anticipation", null)
+                        .WithMany("Transactions")
+                        .HasForeignKey("AnticipationId");
                 });
 #pragma warning restore 612, 618
         }

@@ -17,5 +17,10 @@ namespace api.Infrastructure.Queries
 
             return response;
         }
+
+        public static IQueryable<Transaction> AvailableAnticipations(this IQueryable<Transaction> transactions)
+        {
+            return transactions.Where(t => t.Anticipated == null);
+        }
     }
 }
