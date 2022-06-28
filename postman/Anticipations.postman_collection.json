@@ -1,0 +1,151 @@
+{
+	"info": {
+		"_postman_id": "8c7d04cd-4d7e-49d6-bf1f-37386b21fcc7",
+		"name": "Anticipations",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6416077"
+	},
+	"item": [
+		{
+			"name": "Create Anticipation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Nsus\": [1368330230]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL_BASE_V1}}/create-anticipation",
+					"host": [
+						"{{URL_BASE_V1}}"
+					],
+					"path": [
+						"create-anticipation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Pending Anticipations",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_BASE_V1}}/pending-anticipations",
+					"host": [
+						"{{URL_BASE_V1}}"
+					],
+					"path": [
+						"pending-anticipations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Anticipation History",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\": \"pending\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL_BASE_V1}}/anticipation-history",
+					"host": [
+						"{{URL_BASE_V1}}"
+					],
+					"path": [
+						"anticipation-history"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Start Service",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{URL_BASE_V1}}/start-service",
+					"host": [
+						"{{URL_BASE_V1}}"
+					],
+					"path": [
+						"start-service"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Approve",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Nsus\": [1471566025]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL_BASE_V1}}/approve",
+					"host": [
+						"{{URL_BASE_V1}}"
+					],
+					"path": [
+						"approve"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reprove",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Nsus\": [1368330230]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL_BASE_V1}}/reprove",
+					"host": [
+						"{{URL_BASE_V1}}"
+					],
+					"path": [
+						"reprove"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
